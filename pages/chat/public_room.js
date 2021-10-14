@@ -55,7 +55,9 @@ export default function PublicRoom() {
 
   useEffect(() => {
     const connectToWs = () => {
-      const websocket = new WebSocket("ws://localhost:3001");
+      const websocket = new WebSocket(
+        "wss://chat-websocketserver.herokuapp.com"
+      );
       websocket.onopen = () => {
         websocket.send(JSON.stringify({ type: "onopen", payload: name }));
         dispatch({ type: "wsConnected" });

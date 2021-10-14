@@ -15,7 +15,7 @@ export default function AnimatedImage() {
       return {
         from: {
           opacity: 0,
-          transform: "translate3d(-1000px, 0px, 0px)",
+          transform: "translate3d(0px, -1000px, 0px)",
         },
         to: { opacity: 1, transform: "translate3d(0px, 0px, 0px)" },
         delay: (index + 1) * 500,

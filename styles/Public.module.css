@@ -1,0 +1,17 @@
+.room {
+  background: url("/chatBg.png");
+  background-size: cover;
+}
+.chat {
+  height: 80vh;
+}
+
+.users {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+.usersDiv {
+  overflow-y: auto;
+}

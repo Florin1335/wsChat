@@ -1,0 +1,19 @@
+.navbar {
+  color: white;
+  position: relative;
+}
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.btnWhite {
+  background-color: white;
+  color: #208abc;
+}
+
+.cornerButton {
+  position: absolute;
+  top: 6px;
+  right: 0;
+}

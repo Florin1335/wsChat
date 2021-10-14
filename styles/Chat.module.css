@@ -1,0 +1,12 @@
+.paragraph {
+  background-color: rgb(240, 240, 240);
+  border-top-left-radius: "2rem";
+  border: 1px solid lightgray;
+  border-radius: 0 1rem 1rem 1rem;
+}
+.selfParagraph {
+  background-color: #2be770a8;
+  border-top-left-radius: "2rem";
+  border: 1px solid lightgray;
+  border-radius: 1rem 0 1rem 1rem;
+}

@@ -12,7 +12,6 @@ export default function NameDialogue(props) {
     },
     to: { transform: "translate3d(0px, 0px, 0px)" },
     reverse: clicked ? true : false,
-    reset: clicked ? true : false,
     config: config.gentle,
   });
   const stylesDiv = useSpring({

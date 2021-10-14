@@ -4,30 +4,10 @@ import { useSprings, animated } from "react-spring";
 
 export default function AnimatedImage() {
   const bubbles = [
-    <img
-      alt="bubble"
-      src="bubble.png"
-      className={styles.bubbles}
-      key="bubble1"
-    ></img>,
-    <img
-      alt="bubble"
-      src="bubble.png"
-      className={styles.bubbles2}
-      key="bubble2"
-    ></img>,
-    <img
-      alt="bubble"
-      src="bubble.png"
-      className={styles.bubbles3}
-      key="bubble3"
-    ></img>,
-    <img
-      alt="bubble"
-      src="bubble.png"
-      className={styles.bubbles4}
-      key="bubble4"
-    ></img>,
+    <img alt="bubble" src="bubble.png" className={styles.bubbles}></img>,
+    <img alt="bubble" src="bubble.png" className={styles.bubbles2}></img>,
+    <img alt="bubble" src="bubble.png" className={styles.bubbles3}></img>,
+    <img alt="bubble" src="bubble.png" className={styles.bubbles4}></img>,
   ];
   const springs = useSprings(
     bubbles.length,
@@ -46,7 +26,9 @@ export default function AnimatedImage() {
   return (
     <div style={{ position: "relative" }}>
       {springs.map((style, index) => (
-        <animated.div style={style}>{bubbles[index]}</animated.div>
+        <animated.div style={style} key={index}>
+          {bubbles[index]}
+        </animated.div>
       ))}
       <img className="img-fluid" src="/people.png" alt="people"></img>
     </div>

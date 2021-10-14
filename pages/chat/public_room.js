@@ -124,8 +124,8 @@ export default function PublicRoom() {
 
         <div className="flex-grow-1" style={{ overflowY: "auto" }}>
           {messages.map((value, index) => (
-            <SlideAnimation self={value.self}>
-              <Paragraph key={index} data={value}></Paragraph>
+            <SlideAnimation self={value.self} key={index}>
+              <Paragraph data={value}></Paragraph>
             </SlideAnimation>
           ))}
         </div>

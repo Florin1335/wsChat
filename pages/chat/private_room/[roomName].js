@@ -1,11 +1,11 @@
 import React, { useReducer, useEffect } from "react";
-import NameDialogue from "../../components/NameDialogue";
-import Paragraph from "../../components/Paragraph";
-import SlideAnimation from "../../components/SlideAnimation";
-import UsersButton from "../../components/UsersButton";
-import styles from "../../styles/Public.module.css";
+import Paragraph from "../../../components/Paragraph";
+import SlideAnimation from "../../../components/SlideAnimation";
+import UsersButton from "../../../components/UsersButton";
+import styles from "../../../styles/Public.module.css";
 import Head from "next/head";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../../components/Navbar";
+import { useRouter } from "next/router";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -39,7 +39,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function PublicRoom() {
+export default function PrivateRoom() {
   const initialState = {
     ws: null,
     messages: [],
@@ -53,9 +53,18 @@ export default function PublicRoom() {
 
   const { ws, messages, input, error, connected, name, users } = state;
 
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.roomName && router.query.userName)
+      dispatch({ type: "nameSet", payload: router.query.userName });
+  }, [router]);
+
   useEffect(() => {
     const connectToWs = () => {
-      const websocket = new WebSocket("ws://localhost:3001");
+      const websocket = new WebSocket(
+        process.env.NEXT_PUBLIC_PUBLIC_ROOM + "/" + router.query.roomName
+      );
       websocket.onopen = () => {
         websocket.send(JSON.stringify({ type: "onopen", payload: name }));
         dispatch({ type: "wsConnected" });
@@ -91,11 +100,6 @@ export default function PublicRoom() {
     }
   };
 
-  const handleNameSet = (e, input) => {
-    e.preventDefault();
-    dispatch({ type: "nameSet", payload: input });
-  };
-
   return (
     <div
       className={`${styles.room} d-flex align-items-center min-vh-100 flex-column`}
@@ -106,10 +110,6 @@ export default function PublicRoom() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>
-      <NameDialogue
-        display={name ? false : true}
-        handleNameSet={handleNameSet}
-      ></NameDialogue>
       <div
         className={`${styles.chat} container d-flex flex-column border bg-white p-3`}
         style={{ position: "relative" }}

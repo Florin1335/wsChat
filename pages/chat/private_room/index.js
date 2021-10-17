@@ -1,11 +1,11 @@
 import React, { useReducer, useEffect } from "react";
-import NameDialogue from "../../components/NameDialogue";
-import Paragraph from "../../components/Paragraph";
-import SlideAnimation from "../../components/SlideAnimation";
-import UsersButton from "../../components/UsersButton";
-import styles from "../../styles/Public.module.css";
+import RoomNameDialogue from "../../../components/RoomNameDialogue";
+import Paragraph from "../../../components/Paragraph";
+import SlideAnimation from "../../../components/SlideAnimation";
+import UsersButton from "../../../components/UsersButton";
+import styles from "../../../styles/Public.module.css";
 import Head from "next/head";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -39,7 +39,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function PublicRoom() {
+export default function PrivateRoom() {
   const initialState = {
     ws: null,
     messages: [],
@@ -55,9 +55,13 @@ export default function PublicRoom() {
 
   useEffect(() => {
     const connectToWs = () => {
-      const websocket = new WebSocket("ws://localhost:3001");
+      const websocket = new WebSocket(
+        process.env.NEXT_PUBLIC_PUBLIC_ROOM + "/" + name.roomName
+      );
       websocket.onopen = () => {
-        websocket.send(JSON.stringify({ type: "onopen", payload: name }));
+        websocket.send(
+          JSON.stringify({ type: "onopen", payload: name.userName })
+        );
         dispatch({ type: "wsConnected" });
       };
       websocket.onmessage = (event) => {
@@ -83,7 +87,13 @@ export default function PublicRoom() {
     e.preventDefault();
     if (ws && connected) {
       if (input && input !== "") {
-        ws.send(JSON.stringify({ type: "onmessage", payload: input, name }));
+        ws.send(
+          JSON.stringify({
+            type: "onmessage",
+            payload: input,
+            name: name.userName,
+          })
+        );
         dispatch({ type: "inputChange", payload: "" });
       }
     } else {
@@ -91,9 +101,9 @@ export default function PublicRoom() {
     }
   };
 
-  const handleNameSet = (e, input) => {
+  const handleNameSet = (e, names) => {
     e.preventDefault();
-    dispatch({ type: "nameSet", payload: input });
+    dispatch({ type: "nameSet", payload: names });
   };
 
   return (
@@ -106,10 +116,10 @@ export default function PublicRoom() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>
-      <NameDialogue
+      <RoomNameDialogue
         display={name ? false : true}
         handleNameSet={handleNameSet}
-      ></NameDialogue>
+      ></RoomNameDialogue>
       <div
         className={`${styles.chat} container d-flex flex-column border bg-white p-3`}
         style={{ position: "relative" }}

@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import AnimatedImage from "../components/AnimatedImage";
 import GroupMountAnimation from "../components/GroupMountAnimation";
 import Navbar from "../components/Navbar";
 import TextMountAnimation from "../components/TextMountAnimation";
 import styles from "../styles/Index.module.css";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -35,26 +35,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <div className="d-flex justify-content-center p-4">
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{" "}
-            <span>
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                width={72}
-                height={16}
-              />
-            </span>
-          </a>
-        </div>
-      </footer>
+      <Footer></Footer>
     </div>
   );
 }

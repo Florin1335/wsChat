@@ -1,0 +1,12 @@
+.main {
+  background-color: #208abc;
+  min-height: 100vh;
+  color: white;
+}
+.footer {
+  background-color: #2a55b3;
+}
+.footer a {
+  color: white;
+  text-decoration: none;
+}

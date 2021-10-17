@@ -28,22 +28,28 @@ export default function Navbar() {
       <div className="col-12 col-sm-2">
         <Logo></Logo>
       </div>
-      <div className="col-12 col-sm-8">
-        <div className="d-flex flex-row gap-5 justify-content-center">
+      <div className="col-12 col-md-8">
+        <div className="d-flex flex-row gap-4 gap-md-5 justify-content-center">
           <a href="/" className="fs-5">
             Home
           </a>
           <a href="/chat/public_room" className="fs-5">
             Public room
           </a>
+          <a href="/chat/create_room" className="fs-5">
+            Create room
+          </a>
+          <a href="/chat/private_room" className="fs-5">
+            Join room
+          </a>
         </div>
       </div>
-      <div className="col-2 d-none d-sm-block">
+      <div className="col-2 d-none d-md-block">
         <button className={`${styles.btnWhite} btn rounded-pill fs-5`}>
           Demo
         </button>
       </div>
-      <div className="d-block d-sm-none">
+      <div className="d-block d-md-none">
         <button
           className={`${styles.btnWhite} ${styles.cornerButton} btn rounded-pill fs-5`}
         >

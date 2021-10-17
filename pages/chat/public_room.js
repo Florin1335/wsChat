@@ -55,7 +55,7 @@ export default function PublicRoom() {
 
   useEffect(() => {
     const connectToWs = () => {
-      const websocket = new WebSocket("ws://localhost:3001");
+      const websocket = new WebSocket(process.env.NEXT_PUBLIC_PUBLIC_ROOM);
       websocket.onopen = () => {
         websocket.send(JSON.stringify({ type: "onopen", payload: name }));
         dispatch({ type: "wsConnected" });

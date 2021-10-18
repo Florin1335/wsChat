@@ -49,7 +49,7 @@ const Slide2 = (props) => {
   );
 };
 
-export default function create_room() {
+export default function CreateRoom() {
   const [slide, setSlide] = useState(1);
   const [input, setInput] = useState({
     roomName: "",

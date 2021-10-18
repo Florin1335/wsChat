@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styles from "../styles/Navbar.module.css";
 
 function Logo() {
@@ -30,18 +31,18 @@ export default function Navbar() {
       </div>
       <div className="col-12 col-md-8">
         <div className="d-flex flex-row gap-4 gap-md-5 justify-content-center">
-          <a href="/" className="fs-5">
-            Home
-          </a>
-          <a href="/chat/public_room" className="fs-5">
-            Public room
-          </a>
-          <a href="/chat/create_room" className="fs-5">
-            Create room
-          </a>
-          <a href="/chat/private_room" className="fs-5">
-            Join room
-          </a>
+          <Link href="/">
+            <a className="fs-5">Home</a>
+          </Link>
+          <Link href="/chat/public_room">
+            <a className="fs-5">Public room</a>
+          </Link>
+          <Link href="/chat/create_room">
+            <a className="fs-5">Create room</a>
+          </Link>
+          <Link href="/chat/private_room">
+            <a className="fs-5">Join room</a>
+          </Link>
         </div>
       </div>
       <div className="col-2 d-none d-md-block">
